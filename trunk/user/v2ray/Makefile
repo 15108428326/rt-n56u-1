@@ -1,7 +1,7 @@
 THISDIR = $(shell pwd)
 v2ray_dir="v2ray.com/core/main"
 export GO111MODULE=on
-export GOPROXY=https://goproxy.io
+export GOPROXY=https://goproxy.cn
 V2ray_VERSION := 4.31.2
 V2ray_URL := https://codeload.github.com/v2ray/v2ray-core/tar.gz/v$(V2ray_VERSION)
 V2RAY_SED_ARGS:=
@@ -31,7 +31,7 @@ build_v2ray:
 	sed -i \
 			'$(V2RAY_SED_ARGS)' \
 			distro/all/all.go ; \
-	GOOS=linux GOARCH=mipsle go build -ldflags "-w -s" -o $(THISDIR)/bin/v2ray; \
+	GOOS=linux GOARCH=mipsle CGO_ENABLED=0 go build -ldflags "-w -s" -o $(THISDIR)/bin/v2ray; \
 	)
 
 clean:

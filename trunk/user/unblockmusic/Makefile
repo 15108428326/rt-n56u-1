@@ -1,6 +1,6 @@
 THISDIR = $(shell pwd)
 export GO111MODULE=on
-export GOPROXY=https://goproxy.io
+export GOPROXY=https://goproxy.cn
 UM_VERSION := 0.2.7
 UM_URL := https://github.com/cnsilvan/UnblockNeteaseMusic/archive/$(UM_VERSION).tar.gz
 
@@ -15,7 +15,7 @@ build_extract:
 
 build:
 	( cd $(THISDIR)/UnblockNeteaseMusicGo/UnblockNeteaseMusic-$(UM_VERSION); \
-	GOOS=linux GOARCH=mipsle go build -ldflags "-w -s" -o $(THISDIR)/bin/UnblockNeteaseMusic; \
+	GOOS=linux GOARCH=mipsle CGO_ENABLED=0 go build -ldflags "-w -s" -o $(THISDIR)/bin/UnblockNeteaseMusic; \
 	) 
 
 download_um:
